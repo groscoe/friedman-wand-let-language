@@ -1,0 +1,76 @@
+
+==================== FINAL INTERFACE ====================
+2018-06-03 18:57:12.700427 UTC
+
+interface LETLanguage-0.1.0.0-Lv8cQLJySGLCsVRf2ju95n:Data.String.Strip 8022
+  interface hash: c9ba5fe8eb97c0f4d0dc70020dd5c9b9
+  ABI hash: 619cf39c16444a23aa2976ba086fd6d9
+  export-list hash: ca8e3f6df448f92c011430b3416883fd
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: 6be495bf016b0309939534b5766db5d2
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  Data.String.Strip.strip
+module dependencies:
+package dependencies: base-4.10.1.0* ghc-prim-0.5.1.1
+                      integer-gmp-1.0.1.0
+orphans: base-4.10.1.0:GHC.Float base-4.10.1.0:GHC.Base
+family instance modules: base-4.10.1.0:Control.Applicative
+                         base-4.10.1.0:Data.Either base-4.10.1.0:Data.Functor.Const
+                         base-4.10.1.0:Data.Functor.Identity base-4.10.1.0:Data.Monoid
+                         base-4.10.1.0:Data.Type.Equality base-4.10.1.0:GHC.Generics
+                         base-4.10.1.0:GHC.IO.Exception base-4.10.1.0:GHC.TypeLits
+                         base-4.10.1.0:GHC.TypeNats
+import  -/  base-4.10.1.0:Data.Char fe4e3458190deeac19969ce15e33bed9
+import  -/  base-4.10.1.0:GHC.Base 782fd99b5e36f3698a26179a49afca64
+import  -/  base-4.10.1.0:GHC.List e3060fbeb44ce0038e6b4dedf2dd9cf1
+import  -/  base-4.10.1.0:GHC.Unicode 49c9de4fffed0d9be65aaeb6a60b757c
+import  -/  base-4.10.1.0:Prelude 31945b7d0084063347fc52506d3a4020
+fff8777b54b9503e3f5dab20e6748213
+  $trModule :: GHC.Types.Module
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.Module
+                   Data.String.Strip.$trModule3
+                   Data.String.Strip.$trModule1) -}
+7f0681b782f1eceb5d5e586c31d2bdf6
+  $trModule1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Data.String.Strip.$trModule2) -}
+533bde4492203fb2d83bd2a9a2f03a69
+  $trModule2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("Data.String.Strip"#) -}
+190e9eddd88f5ee81e979325e2c294dd
+  $trModule3 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Data.String.Strip.$trModule4) -}
+17fbe4355b6745d70ddb1a3417c6857d
+  $trModule4 :: GHC.Prim.Addr#
+  {- HasNoCafRefs,
+     Unfolding: ("LETLanguage-0.1.0.0-Lv8cQLJySGLCsVRf2ju95n"#) -}
+ff80d2a5f3697acd67fae874a0b48144
+  strip :: GHC.Base.String -> GHC.Base.String
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
+     Unfolding: (\ (x :: [GHC.Types.Char]) ->
+                 GHC.List.dropWhile
+                   @ GHC.Types.Char
+                   GHC.Unicode.isSpace
+                   (GHC.List.reverse1
+                      @ GHC.Types.Char
+                      (GHC.List.dropWhile
+                         @ GHC.Types.Char
+                         GHC.Unicode.isSpace
+                         (GHC.List.reverse1
+                            @ GHC.Types.Char
+                            x
+                            (GHC.Types.[] @ GHC.Types.Char)))
+                      (GHC.Types.[] @ GHC.Types.Char))) -}
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: safe
+require own pkg trusted: False
+

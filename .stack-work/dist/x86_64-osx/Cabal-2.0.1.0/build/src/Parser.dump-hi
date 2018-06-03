@@ -1,0 +1,342 @@
+
+==================== FINAL INTERFACE ====================
+2018-06-03 19:10:29.21144 UTC
+
+interface LETLanguage-0.1.0.0-AjjNVn9s5sDzZ7DWIwnd3:Parser 8022
+  interface hash: 9bcac255ef1cac4663ca0f9ac8b06817
+  ABI hash: e7fe8c6cb9cd47ec2c29f05be4803a1a
+  export-list hash: 13b4d8f8b916dd359647b0e20a83de4d
+  orphan hash: f22606b4a9a8bad5521beffe1923497c
+  flag hash: 0451a77cc0d8e5d99d548d6441c7dd35
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  Parser.parseProgram
+module dependencies: Expr Val
+package dependencies: array-0.5.2.0 base-4.10.1.0* binary-0.8.5.1
+                      bytestring-0.10.8.2 containers-0.5.10.2 deepseq-1.4.3.0
+                      ghc-prim-0.5.1.1 integer-gmp-1.0.1.0 mtl-2.2.2 parsec-3.1.13.0
+                      text-1.2.3.0 transformers-0.5.2.0
+orphans: text-1.2.3.0:Data.Text.Lazy text-1.2.3.0:Data.Text
+         binary-0.8.5.1:Data.Binary.Generic
+         bytestring-0.10.8.2:Data.ByteString.Builder
+         text-1.2.3.0:Data.Text.Show
+         transformers-0.5.2.0:Control.Monad.Trans.Error
+         base-4.10.1.0:GHC.Float base-4.10.1.0:GHC.Base
+family instance modules: base-4.10.1.0:Control.Applicative
+                         base-4.10.1.0:Data.Complex base-4.10.1.0:Data.Either
+                         base-4.10.1.0:Data.Functor.Compose base-4.10.1.0:Data.Functor.Const
+                         base-4.10.1.0:Data.Functor.Identity
+                         base-4.10.1.0:Data.Functor.Product base-4.10.1.0:Data.Functor.Sum
+                         base-4.10.1.0:Data.List.NonEmpty base-4.10.1.0:Data.Monoid
+                         base-4.10.1.0:Data.Semigroup base-4.10.1.0:Data.Type.Equality
+                         base-4.10.1.0:Data.Version base-4.10.1.0:Data.Void
+                         base-4.10.1.0:GHC.Exts base-4.10.1.0:GHC.Generics
+                         base-4.10.1.0:GHC.IO.Exception base-4.10.1.0:GHC.TypeLits
+                         base-4.10.1.0:GHC.TypeNats containers-0.5.10.2:Data.IntMap.Internal
+                         containers-0.5.10.2:Data.IntSet.Internal
+                         containers-0.5.10.2:Data.Map.Internal
+                         containers-0.5.10.2:Data.Sequence.Internal
+                         containers-0.5.10.2:Data.Set.Internal containers-0.5.10.2:Data.Tree
+                         text-1.2.3.0:Data.Text text-1.2.3.0:Data.Text.Lazy
+import  -/  Expr 1946f3d5e4e1b0477553faf101bde29c
+  exports: 28d47d405e73ed0c9ea2a32301e251cb
+  BinOp c2d52bd6e3a88c342a014f5b1c4eb0e9
+  Cons a69933727ff05980398db38e21aaf1ba
+  Expr 51bc52830c149d81e81cae33e098648e
+  I 31f94b154aaa7860343b8c6b5ac95e1e
+  If 9fc4f0370f7f2485261e6bbb3d540aaa
+  Let a9d5e347751b315444bca2cc7c14eea7
+  LetRec cfaa92f88959fc3d193bb72a61da5b28
+  ListUnOp 4f999f52af4c0fb5f6eafcb65d01e2a0
+  Nil 7210e6eee1fc6c788ba3cd9a35418644
+  UnOp 68d1eca7642d7f3aa71fc1b1f83b264f
+  Unpack 92e4304ec163cda8bea90162d88adcd1
+  Var bdcdb66782eb571262f2ccf7aebeb3d6
+import  -/  Val 39961ad844af2fe8f0995479f4c85015
+  exports: 657dcda7d5828675d2309443963dc934
+  VBool 0436ed098bcf050853b0aa1f18dad57d
+  VInt 2b5361c2f8398e204500bfd8e32d9789
+  VList 94c7680fb05cd25d999583298f36c121
+  Val a01b0276a2b7fa8b8c11ed084c5e56ac
+import  -/  base-4.10.1.0:Control.Monad ebed2e8e7444944e0c1d827c6faf40a4
+import  -/  base-4.10.1.0:Data.Either d7dae5d9bf298dee616e465c14b5d60e
+import  -/  base-4.10.1.0:Data.Foldable 9ed87455d68e87ff2b5b8725eae9897e
+import  -/  base-4.10.1.0:Data.Functor 2ffda4f936b8f474394d93205750aff3
+import  -/  base-4.10.1.0:Data.Tuple 8fa1305aa5032ea35e2a54fa5f1e78f9
+import  -/  base-4.10.1.0:GHC.Base 782fd99b5e36f3698a26179a49afca64
+import  -/  base-4.10.1.0:GHC.List e3060fbeb44ce0038e6b4dedf2dd9cf1
+import  -/  base-4.10.1.0:GHC.Num 6e1dc5d36d99a802edb39b92bb1923b8
+import  -/  base-4.10.1.0:GHC.Real 3c62834bc25e762eabc44149c4cc142d
+import  -/  base-4.10.1.0:Prelude 31945b7d0084063347fc52506d3a4020
+import  -/  base-4.10.1.0:Text.Read 9e862e012b3c71e83cb56fb456188f44
+import  -/  containers-0.5.10.2:Data.Set e0f44b836a00cf82340abfec45686444
+import  -/  containers-0.5.10.2:Data.Set.Internal ef997889cbadce0ab12c96cb6c07884d
+import  -/  ghc-prim-0.5.1.1:GHC.Classes 93e2660065dce9329577e83d76d8f0d4
+import  -/  parsec-3.1.13.0:Text.Parsec 98254be179cca518f0ed313744ac6763
+import  -/  parsec-3.1.13.0:Text.Parsec.Char da3cc83e13b49041338e99b1e48a27f2
+import  -/  parsec-3.1.13.0:Text.Parsec.Combinator 471c5c3b1b6d9899e7c8aae831a78ea0
+import  -/  parsec-3.1.13.0:Text.Parsec.Error 9a2acf4ad512c1c28143234fa3e0a63a
+import  -/  parsec-3.1.13.0:Text.Parsec.Prim 0964c1d85e664c9165a495e41b45f253
+import  -/  parsec-3.1.13.0:Text.Parsec.String bc5f29fa31e536a031360598f8902fd4
+219fdca1210611565b4863468655e5dc
+  $s$fFoldableSet_$celem_go3 ::
+    [GHC.Types.Char]
+    -> Data.Set.Internal.Set [GHC.Types.Char] -> GHC.Types.Bool
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U> -}
+7aedce40635dda441b9c4cb2abf7e2bb
+  $s$fStream[]mtok ::
+    Text.Parsec.Prim.Stream [tok] Data.Functor.Identity.Identity tok
+  {- Strictness: m, Inline: CONLIKE,
+     Unfolding: DFun: @ tok.
+                  @ [tok]
+                  @ Data.Functor.Identity.Identity
+                  @ tok
+                  Data.Functor.Identity.$fMonadIdentity
+                  (Parser.$s$fStream[]mtok_$s$fStream[]mtok_$cuncons @ tok) -}
+6bd984465a449e35a1069a72afd5f755
+  $s$fStream[]mtok_$s$fStream[]mtok_$cuncons ::
+    [tok]
+    -> Data.Functor.Identity.Identity (GHC.Base.Maybe (tok, [tok]))
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
+     Inline: (sat-args=1),
+     Unfolding: InlineRule (1, False, False)
+                (\ @ tok (ds :: [tok]) ->
+                 case ds of wild {
+                   []
+                   -> (GHC.Base.Nothing @ (tok, [tok]))
+                        `cast`
+                      (Sym (Data.Functor.Identity.N:Identity[0]
+                                <GHC.Base.Maybe (tok, [tok])>_R))
+                   : t ts
+                   -> (GHC.Base.Just @ (tok, [tok]) (t, ts))
+                        `cast`
+                      (Sym (Data.Functor.Identity.N:Identity[0]
+                                <GHC.Base.Maybe (tok, [tok])>_R)) }) -}
+83a1d0c6688a2541c43670a84ff835ca
+  $sfromList ::
+    [[GHC.Types.Char]] -> Data.Set.Internal.Set [GHC.Types.Char]
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: (\ (ds :: [[GHC.Types.Char]]) ->
+                 case ds of wild {
+                   [] -> Data.Set.Internal.Tip @ [GHC.Types.Char]
+                   : x ds1
+                   -> case ds1 of wild1 {
+                        []
+                        -> case x of dt { DEFAULT ->
+                           Data.Set.Internal.Bin
+                             @ [GHC.Types.Char]
+                             1#
+                             dt
+                             (Data.Set.Internal.Tip @ [GHC.Types.Char])
+                             (Data.Set.Internal.Tip @ [GHC.Types.Char]) }
+                        : ipv ipv1
+                        -> case GHC.Classes.$fOrd[]_$s$ccompare1 x ipv of wild2 {
+                             DEFAULT
+                             -> case x of dt { DEFAULT ->
+                                Parser.$sfromList_go4
+                                  (Data.Set.Internal.Bin
+                                     @ [GHC.Types.Char]
+                                     1#
+                                     dt
+                                     (Data.Set.Internal.Tip @ [GHC.Types.Char])
+                                     (Data.Set.Internal.Tip @ [GHC.Types.Char]))
+                                  wild1 }
+                             GHC.Types.LT
+                             -> case x of dt { DEFAULT ->
+                                Parser.$wgo3
+                                  1#
+                                  (Data.Set.Internal.Bin
+                                     @ [GHC.Types.Char]
+                                     1#
+                                     dt
+                                     (Data.Set.Internal.Tip @ [GHC.Types.Char])
+                                     (Data.Set.Internal.Tip @ [GHC.Types.Char]))
+                                  wild1 } } } }) -}
+1a4de5027039e5d8bd77e9f1a5dd0494
+  $sfromList_go4 ::
+    Data.Set.Internal.Set [GHC.Types.Char]
+    -> [[GHC.Types.Char]] -> Data.Set.Internal.Set [GHC.Types.Char]
+  {- Arity: 2, Strictness: <S,1*U><S,1*U> -}
+04eb8ea3af3297550e1f12706d30cb96
+  $sinsert_$sgo3 ::
+    [GHC.Types.Char]
+    -> [GHC.Types.Char]
+    -> Data.Set.Internal.Set [GHC.Types.Char]
+    -> Data.Set.Internal.Set [GHC.Types.Char]
+  {- Arity: 3, Strictness: <L,U><S,1*U><S,1*U> -}
+37f7e1344c5dba68232b6b67de75af07
+  $trModule :: GHC.Types.Module
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.Module
+                   Parser.$trModule3
+                   Parser.$trModule1) -}
+70b26f8e6cf9b950508dfd1362369cce
+  $trModule1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Parser.$trModule2) -}
+4dc2ee8a9e99424f5b4f55a3cad538df
+  $trModule2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("Parser"#) -}
+a08232a0a0ca6708ea921bf9189ff1e0
+  $trModule3 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Parser.$trModule4) -}
+8db6bcf51aaac3f4005137f1a7b801a8
+  $trModule4 :: GHC.Prim.Addr#
+  {- HasNoCafRefs,
+     Unfolding: ("LETLanguage-0.1.0.0-AjjNVn9s5sDzZ7DWIwnd3"#) -}
+47ddfdd77784994b01fec166c79e8e71
+  $wgo3 ::
+    GHC.Prim.Int#
+    -> Data.Set.Internal.Set [GHC.Types.Char]
+    -> [[GHC.Types.Char]]
+    -> Data.Set.Internal.Set [GHC.Types.Char]
+  {- Arity: 3, Strictness: <L,U><S,1*U><S,1*U>, Inline: [0] -}
+a8af7fc9cf7e8e1f29696f076b6ae355
+  parseProgram ::
+    GHC.Base.String
+    -> Data.Either.Either Text.Parsec.Error.ParseError Expr.Expr
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: InlineRule (0, True, True)
+                Parser.parseProgram1
+                  `cast`
+                (<GHC.Base.String>_R
+                 ->_R Data.Functor.Identity.N:Identity[0]
+                          <Data.Either.Either Text.Parsec.Error.ParseError Expr.Expr>_R) -}
+c78b248990ff58eb9bb52dd122e50167
+  parseProgram1 ::
+    GHC.Base.String
+    -> Data.Functor.Identity.Identity
+         (Data.Either.Either Text.Parsec.Error.ParseError Expr.Expr)
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (s1 :: GHC.Base.String) ->
+                 Text.Parsec.Prim.runPT
+                   @ GHC.Base.String
+                   @ Data.Functor.Identity.Identity
+                   @ GHC.Types.Char
+                   @ ()
+                   @ Expr.Expr
+                   (Parser.$s$fStream[]mtok @ GHC.Types.Char)
+                   Parser.parseProgram3
+                     `cast`
+                   (Sym (Text.Parsec.Prim.N:ParsecT[0]
+                             <[GHC.Types.Char]>_R
+                             <()>_R
+                             <Data.Functor.Identity.Identity>_R
+                             <Expr.Expr>_R))
+                   GHC.Tuple.()
+                   Parser.parseProgram_name
+                   s1) -}
+62d15ab9e5936899e0458925e3f4c091
+  parseProgram2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("LET"#) -}
+40dd83166049547130d28ea5bec6c468
+  parseProgram3 ::
+    Text.Parsec.Prim.State [GHC.Types.Char] ()
+    -> (Expr.Expr
+        -> Text.Parsec.Prim.State [GHC.Types.Char] ()
+        -> Text.Parsec.Error.ParseError
+        -> Data.Functor.Identity.Identity b1)
+    -> (Text.Parsec.Error.ParseError
+        -> Data.Functor.Identity.Identity b1)
+    -> (Expr.Expr
+        -> Text.Parsec.Prim.State [GHC.Types.Char] ()
+        -> Text.Parsec.Error.ParseError
+        -> Data.Functor.Identity.Identity b1)
+    -> (Text.Parsec.Error.ParseError
+        -> Data.Functor.Identity.Identity b1)
+    -> Data.Functor.Identity.Identity b1
+  {- Arity: 5,
+     Unfolding: (Text.Parsec.Prim.$fApplicativeParsecT1
+                   @ [GHC.Types.Char]
+                   @ ()
+                   @ Data.Functor.Identity.Identity
+                   @ Expr.Expr
+                   @ ()
+                   Parser.parseProgram5
+                     `cast`
+                   (Sym (Text.Parsec.Prim.N:ParsecT[0]
+                             <[GHC.Types.Char]>_R
+                             <()>_R
+                             <Data.Functor.Identity.Identity>_R
+                             <Expr.Expr>_R))
+                   Parser.parseProgram4
+                     `cast`
+                   (Sym (Text.Parsec.Prim.N:ParsecT[0]
+                             <GHC.Base.String>_R
+                             <()>_R
+                             <Data.Functor.Identity.Identity>_R
+                             <()>_R))) -}
+2596427162e06bc2c6401f7f1ccc02db
+  parseProgram4 ::
+    Text.Parsec.Prim.State GHC.Base.String ()
+    -> (()
+        -> Text.Parsec.Prim.State GHC.Base.String ()
+        -> Text.Parsec.Error.ParseError
+        -> Data.Functor.Identity.Identity b)
+    -> (Text.Parsec.Error.ParseError
+        -> Data.Functor.Identity.Identity b)
+    -> (()
+        -> Text.Parsec.Prim.State GHC.Base.String ()
+        -> Text.Parsec.Error.ParseError
+        -> Data.Functor.Identity.Identity b)
+    -> (Text.Parsec.Error.ParseError
+        -> Data.Functor.Identity.Identity b)
+    -> Data.Functor.Identity.Identity b
+  {- Arity: 5,
+     Unfolding: (Text.Parsec.Combinator.eof1
+                   @ GHC.Base.String
+                   @ Data.Functor.Identity.Identity
+                   @ GHC.Types.Char
+                   @ ()
+                   (Parser.$s$fStream[]mtok @ GHC.Types.Char)
+                   GHC.Show.$fShowChar) -}
+3ead0c84fe0b74fce6449be50940d474
+  parseProgram5 ::
+    Text.Parsec.Prim.State [GHC.Types.Char] ()
+    -> (Expr.Expr
+        -> Text.Parsec.Prim.State [GHC.Types.Char] ()
+        -> Text.Parsec.Error.ParseError
+        -> Data.Functor.Identity.Identity b1)
+    -> (Text.Parsec.Error.ParseError
+        -> Data.Functor.Identity.Identity b1)
+    -> (Expr.Expr
+        -> Text.Parsec.Prim.State [GHC.Types.Char] ()
+        -> Text.Parsec.Error.ParseError
+        -> Data.Functor.Identity.Identity b1)
+    -> (Text.Parsec.Error.ParseError
+        -> Data.Functor.Identity.Identity b1)
+    -> Data.Functor.Identity.Identity b1
+  {- Arity: 5 -}
+4d4556c1ade27dbc1ce918fffdd1c16e
+  parseProgram_name :: Text.Parsec.Pos.SourceName
+  {- Unfolding: (GHC.CString.unpackCString# Parser.parseProgram2) -}
+"SPEC/Parser $fStream[]mtok @ Identity _" [orphan] forall @ tok
+                                                          (v :: GHC.Base.Monad
+                                                                  Data.Functor.Identity.Identity)
+  Text.Parsec.Prim.$fStream[]mtok @ Data.Functor.Identity.Identity
+                                  @ tok
+                                  v
+  = Parser.$s$fStream[]mtok @ tok
+"SPEC/Parser $fStream[]mtok_$cuncons @ Identity _" [orphan] forall @ tok
+                                                                   ($dMonad :: GHC.Base.Monad
+                                                                                 Data.Functor.Identity.Identity)
+  Text.Parsec.Prim.$fStream[]mtok_$cuncons @ Data.Functor.Identity.Identity
+                                           @ tok
+                                           $dMonad
+  = Parser.$s$fStream[]mtok_$s$fStream[]mtok_$cuncons @ tok
+"SPEC/Parser fromList @ [Char]" [orphan] forall ($dOrd :: GHC.Classes.Ord
+                                                            [GHC.Types.Char])
+  Data.Set.Internal.fromList @ [GHC.Types.Char] $dOrd
+  = Parser.$sfromList
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: safe
+require own pkg trusted: False
+
