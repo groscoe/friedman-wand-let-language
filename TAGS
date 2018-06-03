@@ -1,22 +1,0 @@
-
-./Setup.hs,15
-main main2,3
-
-./app/Main.hs,52
-module Main Main0,1
-main main4,5
-main main5,6
-
-./test/Spec.hs,0
-
-./test/Data/String/StripSpec.hs,123
-module Data.String.StripSpec Data.String.StripSpec0,1
-main main9,10
-main main10,11
-spec spec12,13
-spec spec13,14
-
-./src/Data/String/Strip.hs,82
-module Data.String.Strip Data.String.Strip0,1
-strip strip4,5
-strip strip5,6
