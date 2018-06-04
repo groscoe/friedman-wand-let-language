@@ -2,6 +2,8 @@
 
 A Haskell implementation of the LET language specification from the book *Essentials of Programming Languages*, 3rd edition, by Friedman and Wand. This is only intended as a study project. A reference implementation in Racket is available on [Github](https://github.com/mwand/eopl3).
 
+This toy language evaluates expressions of the form `<op>(Int, Int)`. It supports a few simple arithmetic operations plus some integer comparisons.
+
 ## TODO
 
 - Improve the parsing module to reduce the use of backtracking.
