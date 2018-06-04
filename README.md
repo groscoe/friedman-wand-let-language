@@ -1,6 +1,6 @@
 # The LET Language
 
-A Haskell implementation of the LET language specification from the book *Essentials of Programming Languages*, 3rd edition, by Friedman and Wand. This is only intended as a study project. A reference implementation in Racket is available on (Github)[https://github.com/mwand/eopl3].
+A Haskell implementation of the LET language specification from the book *Essentials of Programming Languages*, 3rd edition, by Friedman and Wand. This is only intended as a study project. A reference implementation in Racket is available on [Github](https://github.com/mwand/eopl3).
 
 ## TODO
 
