@@ -13,15 +13,15 @@ import qualified Data.Map as M
 -- Evaluation
 type Env = M.Map String Val
 
+evaluate :: Expr -> Either String Val
+evaluate expr = evalStateT (eval expr) M.empty
+
 run :: String -> Either String Val
 run s = case parseProgram s of
   Left perror -> throwError $
     "ParseError (" ++ show (sourceLine pos) ++ ":" ++ show (sourceColumn pos) ++ ")"
     where pos = errorPos perror
   Right expr  -> evaluate expr
-
-evaluate :: Expr -> Either String Val
-evaluate expr = evalStateT (eval expr) M.empty
 
 eval :: (MonadError String m, MonadState Env m) => Expr -> m Val
 eval (I n) = pure (VInt n)
@@ -46,35 +46,30 @@ eval (Var v) = do
     Just val -> pure val
     Nothing  -> throwError $ "Undefined variable: " ++ v
 
-eval (Let vs body) = do
-  oldState <- get
-  evalAttribs vs
-  bodyVal <- eval body
-  put oldState
-  pure bodyVal
-
-eval (LetRec vs body) = do
-  oldState <- get
-  evalAttribsRec vs
-  bodyVal <- eval body
-  put oldState
-  pure bodyVal
+eval (Let attribs body) = evalAttribsWith evalAttribs attribs body
+eval (LetRec attribs body) = evalAttribsWith evalAttribsRec attribs body
 
 eval (Unpack names expr@(Cons _ _) body) = do
   vals <- cons2List expr
   if length names == length vals
-  then do oldState <- get
-          evalAttribs (names `zip` vals)
-          bodyVal <- eval body
-          put oldState
-          pure bodyVal
-  else throwError "TypeError: can't unpack with different lengths."
+    then evalAttribsWith evalAttribs (names `zip` vals) body
+    else throwError "TypeError: can't unpack with different lengths."
 
 eval (Unpack _ Nil _) =
   throwError "Error: can't unpack an empty list"
 
 eval (Unpack _ badExpr _) =
   throwError $ "TypeError: not a list: " ++ show badExpr
+
+-- eval utils
+evalAttribsWith :: (MonadError String m, MonadState Env m)
+                => ([(String, Expr)] -> m ()) -> [(String, Expr)] -> Expr -> m Val
+evalAttribsWith evalFun attribs body = do
+  oldState <- get
+  evalFun attribs
+  bodyVal <- eval body
+  put oldState
+  pure bodyVal
 
 evalAttribs :: (MonadError String m, MonadState Env m) => [(String, Expr)] -> m ()
 evalAttribs [] = pure mempty
