@@ -1,11 +1,10 @@
-{-# OPTIONS_GHC -F -pgmF hspec-discover #-}
 module Test where
 
 import Eval (run)
 
 -- examples
 ex0, ex1, ex2, ex3, ex4, ex5, ex6, ex7, ex8, ex9 :: String
-ex0 = "-(55, -(x, 11))"
+ex0 = "let x = 3 in -(55, -(x, 11))"
 
 ex1 = "let x = 5 in -(x, 3)"
 

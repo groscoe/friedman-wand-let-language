@@ -2,7 +2,7 @@ name:                LETLanguage
 version:             0.1.0.0
 -- synopsis:
 -- description:
-homepage:            https://github.com/groscoe/LETLanguage#readme
+homepage:            https://github.com/groscoe/friedman-wand-let-language#the-let-language
 license:             BSD3
 license-file:        LICENSE
 author:              Gustavo Roscoe
