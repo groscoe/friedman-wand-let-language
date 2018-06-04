@@ -2,35 +2,13 @@ module Parser (parseProgram) where
 
 import Expr
 import Val
+
 import Control.Monad (guard)
 import Text.Parsec hiding (State)
 import Text.Parsec.String
 import qualified Data.Set as S
 
--- Parse utils
-func :: String -> Parser String
-func name = string name <* many space
-
-tok :: String -> Parser String
-tok s = string s <* many1 space
-
-symbol :: Char -> Parser Char
-symbol c = char c <* many space
-
-betweenParens :: Parser a -> Parser a
-betweenParens = between (char '(' <* many space) (char ')' <* many space)
-
-parseOperands :: Parser (Expr, Expr)
-parseOperands = do
-  a <- parseExpr
-  b <- symbol ',' *> parseExpr
-  pure (a, b)
-
 -- Parsing
-
-parseBinOp :: String -> (Expr -> Expr -> Expr) -> Parser Expr
-parseBinOp sym op = func sym *> (uncurry op <$> betweenParens parseOperands)
-
 parseProgram :: String -> Either ParseError Expr
 parseProgram = parse (parseExpr <* eof) "LET"
 
@@ -51,12 +29,37 @@ parseExpr = many space *> (
   <|> parseIf
   ) <* many space
 
+parseInt :: Parser Expr
+parseInt = I . read <$> (
+  try ((:) <$> char '-' <*> many1 digit)
+  <|> many1 digit)
+
+parseLetRec :: Parser Expr
+parseLetRec = LetRec <$> (tok "let*" *> many1 (try parseAttrib)) <*> (tok "in" *> parseExpr)
+
+parseLet :: Parser Expr
+parseLet = Let <$> (tok "let" *> many1 (try parseAttrib)) <*> (tok "in" *> parseExpr)
+
+parseVar :: Parser Expr
+parseVar = Var <$> parseIdentifier reserved
+
+parseCons :: Parser Expr
+parseCons = parseBinOp "cons" Cons
+
 parseUnpack :: Parser Expr
 parseUnpack = Unpack
   <$> (tok "unpack" *> many1 (parseIdentifier reserved <* many space))
   <*> (symbol '=' *> parseExpr)
   <*> (tok "in" *> parseExpr)
 
+parseList :: Parser Expr
+parseList = try parseEmptyList <|> parseNonEmptyList
+
+parseEmptyList, parseNonEmptyList :: Parser Expr
+parseEmptyList = const Nil <$> string "emptylist"
+
+parseNonEmptyList =
+  foldr Cons Nil <$> (func "list" *> betweenParens (sepBy1 parseExpr (char ',')))
 
 parseListUnOp :: Parser Expr
 parseListUnOp =
@@ -68,27 +71,6 @@ parseCar, parseCdr, parseNull :: Parser Expr
 parseCar = parseUnaryListOp "car" head
 parseCdr = parseUnaryListOp "cdr" (VList . tail)
 parseNull = parseUnaryListOp "null?" (VBool . null)
-
-parseUnaryListOp :: String -> ([Val] -> Val) -> Parser Expr
-parseUnaryListOp name f =
-  ListUnOp name f <$> (func name *> betweenParens parseExpr)
-
-parseCons :: Parser Expr
-parseCons = parseBinOp "cons" Cons
-
-parseList :: Parser Expr
-parseList = try parseEmptyList <|> parseNonEmptyList
-
-parseEmptyList, parseNonEmptyList :: Parser Expr
-parseEmptyList = const Nil <$> string "emptylist"
-
-parseNonEmptyList =
-  foldr Cons Nil <$> (func "list" *> betweenParens (sepBy1 parseExpr (char ',')))
-
-parseInt :: Parser Expr
-parseInt = I . read <$> (
-  try ((:) <$> char '-' <*> many1 digit)
-  <|> many1 digit)
 
 parseArithBinOp :: Parser Expr
 parseArithBinOp = parseDiff
@@ -102,11 +84,9 @@ parseAdd  = parseBinOp "+" (BinOp "+" (liftIntOp (+) VInt))
 parseMul  = parseBinOp "*" (BinOp "*" (liftIntOp (*) VInt))
 parseDiv  = parseBinOp "/" (BinOp "/" (liftIntOp div VInt))
 
-liftIntOp :: (Int -> Int -> a) -> (a -> Val) -> (Int -> Int -> Val)
-liftIntOp op cons = (cons .) . op
-
 parseArithBinPred :: Parser Expr
-parseArithBinPred = parseEqual
+parseArithBinPred =
+  parseEqual
   <|> parseGreater
   <|> parseLess
 
@@ -121,14 +101,47 @@ parseIsZero = parseUnaryIntOp "zero?" (VBool . (== 0))
 parseMinus :: Parser Expr
 parseMinus = parseUnaryIntOp "minus" (VInt . negate)
 
-parseUnaryIntOp :: String -> (Int -> Val) -> Parser Expr
-parseUnaryIntOp name f = UnOp name f <$> (func name *> betweenParens parseExpr)
-
 parseIf :: Parser Expr
 parseIf = If
   <$> (tok "if"   *> parseExpr)
   <*> (tok "then" *> parseExpr)
   <*> (tok "else" *> parseExpr)
+
+-- Parse utils
+func :: String -> Parser String
+func name = string name <* many space
+
+tok :: String -> Parser String
+tok s = string s <* many1 space
+
+symbol :: Char -> Parser Char
+symbol c = char c <* many space
+
+betweenParens :: Parser a -> Parser a
+betweenParens = between (char '(' <* many space) (char ')' <* many space)
+
+parseOperands :: Parser (Expr, Expr)
+parseOperands = do
+  a <- parseExpr
+  b <- symbol ',' *> parseExpr
+  pure (a, b)
+
+parseAttrib :: Parser (String, Expr)
+parseAttrib =
+  (,) <$> (parseIdentifier reserved <* many space) <*> (symbol '=' *> parseExpr)
+
+parseBinOp :: String -> (Expr -> Expr -> Expr) -> Parser Expr
+parseBinOp sym op = func sym *> (uncurry op <$> betweenParens parseOperands)
+
+parseUnaryListOp :: String -> ([Val] -> Val) -> Parser Expr
+parseUnaryListOp name f =
+  ListUnOp name f <$> (func name *> betweenParens parseExpr)
+
+liftIntOp :: (Int -> Int -> a) -> (a -> Val) -> (Int -> Int -> Val)
+liftIntOp op cons = (cons .) . op
+
+parseUnaryIntOp :: String -> (Int -> Val) -> Parser Expr
+parseUnaryIntOp name f = UnOp name f <$> (func name *> betweenParens parseExpr)
 
 parseIdentifier :: S.Set String -> Parser String
 parseIdentifier reservedNames = do
@@ -158,16 +171,3 @@ reserved = S.fromList [
   "null",
   "unpack"
   ]
-
-parseVar :: Parser Expr
-parseVar = Var <$> parseIdentifier reserved
-
-parseLet :: Parser Expr
-parseLet = Let <$> (tok "let" *> many1 (try parseAttrib)) <*> (tok "in" *> parseExpr)
-
-parseLetRec :: Parser Expr
-parseLetRec = LetRec <$> (tok "let*" *> many1 (try parseAttrib)) <*> (tok "in" *> parseExpr)
-
-parseAttrib :: Parser (String, Expr)
-parseAttrib =
-  (,) <$> (parseIdentifier reserved <* many space) <*> (symbol '=' *> parseExpr)
